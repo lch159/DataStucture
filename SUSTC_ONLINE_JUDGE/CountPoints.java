@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class FindIntegerPoint {
+public class CountPoints {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         while (input.hasNext()) {
