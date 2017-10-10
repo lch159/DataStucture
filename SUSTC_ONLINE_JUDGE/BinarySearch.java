@@ -29,7 +29,6 @@ public class BinarySearch {
             int middle = (high + low) / 2;
             if (m == array[middle]) {
                 flag = true;
-                System.out.println(m+" 位置是 "+middle);
                 break;
             } else if (m < array[middle]) {
                 high = middle - 1;
