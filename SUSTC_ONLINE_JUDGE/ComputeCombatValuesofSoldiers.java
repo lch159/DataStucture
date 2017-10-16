@@ -40,11 +40,7 @@ public class ComputeCombatValuesofSoldiers {
 
 
             List<Map.Entry<Integer, Integer>> list = new ArrayList<>(result.entrySet());
-            Collections.sort(list,new Comparator<Map.Entry<Integer,Integer>>() {
-                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-                    return o1.getKey().compareTo(o2.getKey());
-                }
-            });
+            list.sort(Comparator.comparing(Map.Entry::getKey));
 
             int index = 1;
             int sum=0;
