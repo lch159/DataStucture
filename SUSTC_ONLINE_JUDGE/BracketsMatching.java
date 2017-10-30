@@ -17,7 +17,6 @@ public class BracketsMatching {
             String s = input.next();
             int sum = 0;
             int lastValue = 0;
-            int index = 0;
             boolean flag = false;
             Stack<Character> stack = new Stack<>();
             for (int j = 0; j < n; j++) {
@@ -37,7 +36,6 @@ public class BracketsMatching {
                 sum += curValue;
                 if (!stack.isEmpty())
                 lastValue = brackets.get(stack.peek());
-
             }
             if (sum == 0 && flag)
                 System.out.println("YES");

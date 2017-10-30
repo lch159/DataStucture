@@ -1,90 +1,81 @@
-import java.io.*;
-import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Stack;
+
 
 public class BeautifulNumber {
 
-    public static void main(String[] args) {
-        InputStream inputStream = System.in;
-        OutputStream outputStream = System.out;
-        InputReader in = new InputReader(inputStream);
-        PrintWriter out = new PrintWriter(outputStream);
+    static InputReader in;
+    static PrintWriter out;
 
-        task solver=new task();
-        solver.solve(in,out);
-        out.close();
+    public static void main(String[] args) throws IOException {
+        in = new InputReader(System.in);
+        int t = in.nextInt();
+        for (int i = 1; i <= t; i++) {
+            int n = in.nextInt();
+            int nums[] = new int[n];
+            for (int j = 0; j < n; j++) {
+                nums[j] = in.nextInt();
+            }
+            StringBuilder result = new StringBuilder();
+
+            int[] arrayResult = FindRfmax(nums);
+            for (int elem : arrayResult) {
+                result.append(elem).append("\n");
+            }
+            System.out.print(result);
+        }
 
 
     }
 
-
-    public static class task{
-        void solve(InputReader in, PrintWriter out){
-
-            int t = in.nextInt();
-            for (int i = 1; i <= t; i++) {
-                int n = in.nextInt();
-                int nums[] = new int[n];
-                for (int j = 0; j < n; j++) {
-
-                    nums[j] = in.nextInt();
-
-                }
-
-                Queue<Integer> myQueue = new LinkedBlockingQueue<>(n);
-
-                myQueue.offer(nums[0]);
-                int k = 1;
-                int complete = 0;
-                while (k < n) {
-                    if (myQueue.element() >= nums[k]) {
-                        if (complete == 0)
-                            myQueue.offer(nums[k]);
-                        k++;
-                    } else if (myQueue.element() < nums[k]) {
-                        out.println(k + 1);
-                        myQueue.poll();
-                    }
-                    if (myQueue.isEmpty()) {
-                        myQueue.offer(nums[k]);
-                        k++;
-                    }
-                    if (k == n) {
-                        out.println(0);
-                        myQueue.poll();
-                        k = n - myQueue.size();
-                        complete = 1;
-                    }
-                }
+    private static int[] FindRfmax(int[] nums) {
+        int len = nums.length;
+        if (len == 0) return nums;
+        int i = 0;
+        int[] res = new int[len];
+        Stack<Integer> stk = new Stack<>();
+        while (i < len) {
+            if (stk.empty() || nums[stk.peek()] >= nums[i]) {
+                stk.push(i++);
+            } else {
+                res[stk.peek()] = i+1;
+                stk.pop();
             }
-
         }
+        while (!stk.empty()) {
+            res[stk.peek()] = 0;
+            stk.pop();
+        }
+        return res;
     }
 
     static class InputReader {
-        BufferedReader reader;
-        StringTokenizer tokenizer;
+        BufferedReader br;
 
         InputReader(InputStream stream) {
-            reader = new BufferedReader(new InputStreamReader(stream), 32768);
-            tokenizer = null;
+            br = new BufferedReader(new InputStreamReader(stream));
         }
 
-        String next() {
-            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-                try {
-                    tokenizer = new StringTokenizer(reader.readLine());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+        public int nextInt() throws IOException {
+            int c = br.read();
+            while (c <= 32) {
+                c = br.read();
             }
-            return tokenizer.nextToken();
+            boolean negative = false;
+            if (c == '-') {
+                negative = true;
+                c = br.read();
+            }
+            int x = 0;
+            while (c > 32) {
+                x = x * 10 + c - '0';
+                c = br.read();
+            }
+            return negative ? -x : x;
         }
-
-        public int nextInt() {
-            return Integer.parseInt(next());
-        }
-
     }
 }
