@@ -1,3 +1,4 @@
+package LAB4;
 
 import java.util.*;
 import java.util.stream.Collectors;

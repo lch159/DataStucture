@@ -1,3 +1,5 @@
+package LAB4;
+
 import java.util.Scanner;
 
 public class MagicQueue {
@@ -35,6 +37,7 @@ public class MagicQueue {
         }
     }
 }
+
 class Node2 {
     private Node2 first;
     private Node2 end;

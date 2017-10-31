@@ -1,3 +1,5 @@
+package LAB5;
+
 import java.util.Scanner;
 
 

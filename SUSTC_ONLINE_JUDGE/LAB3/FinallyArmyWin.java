@@ -1,7 +1,11 @@
+package LAB3;
+
 import java.util.*;
 
-public class ComputeCombatValuesofSoldiers {
-
+/**
+ * Created by 11611423 李晨昊 on 2017/10/11.16:10
+ */
+public class FinallyArmyWin {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int t = input.nextInt();
@@ -26,21 +30,23 @@ public class ComputeCombatValuesofSoldiers {
 
             Map<Integer, Integer> result = new HashMap<>();
             for (Map.Entry<Integer, Integer> elem : a.entrySet()) {
-                if (b.containsKey(elem.getKey())) {
-                    result.put(elem.getKey(), elem.getValue() + b.get(elem.getKey()));
-                    b.remove(elem.getKey());
-                } else {
-                    result.put(elem.getKey(), elem.getValue());
+                for (Map.Entry<Integer,Integer> elem2 :b.entrySet())
+                {
+                    int value= elem.getValue()*elem2.getValue();
+                    int key =elem.getKey()+elem2.getKey();
+                    if (!result.containsKey(key))
+                        result.put(key,value);
+                    else
+                        result.put(key,value+result.get(key));
                 }
             }
-            if (b.size() != 0)
-                for (Map.Entry<Integer, Integer> elem : b.entrySet()) {
-                    result.put(elem.getKey(), elem.getValue());
-                }
-
 
             List<Map.Entry<Integer, Integer>> list = new ArrayList<>(result.entrySet());
-            list.sort(Comparator.comparing(Map.Entry::getKey));
+            Collections.sort(list,new Comparator<Map.Entry<Integer,Integer>>() {
+                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                    return o1.getKey().compareTo(o2.getKey());
+                }
+            });
 
             int index = 1;
             int sum=0;

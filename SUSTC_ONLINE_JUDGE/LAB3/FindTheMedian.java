@@ -1,4 +1,6 @@
-import java.util.*;
+package LAB3;
+
+import java.util.Scanner;
 
 public class FindTheMedian {
 

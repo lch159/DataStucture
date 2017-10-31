@@ -1,4 +1,4 @@
-package test;
+package LAB2;
 
 import java.util.HashSet;
 import java.util.Scanner;

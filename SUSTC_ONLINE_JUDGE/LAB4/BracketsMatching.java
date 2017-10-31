@@ -1,4 +1,9 @@
-import java.util.*;
+package LAB4;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class BracketsMatching {
     public static void main(String[] args) {

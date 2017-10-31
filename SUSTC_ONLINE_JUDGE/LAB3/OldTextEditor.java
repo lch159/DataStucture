@@ -1,4 +1,5 @@
-import java.util.LinkedList;
+package LAB3;
+
 import java.util.Scanner;
 
 public class OldTextEditor {

@@ -1,6 +1,6 @@
-import java.util.Iterator;
+package LAB3;
+
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class CreateSpecialGroup {
